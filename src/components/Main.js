@@ -10,7 +10,6 @@ class SingleImg extends React.Component{
   constructor(...args) {
     super(...args);
     this.state={
-      singlePhotoClass:'singlePhoto'
     }
   }
   static defaultProps={
@@ -50,6 +49,35 @@ class SingleImg extends React.Component{
         <div className="backside" onClick={this.handleClick.bind(this)}>{this.props.data.desc}</div>
     </div>
     );
+  }
+}
+class Controller extends  React.Component{
+  constructor(...args) {
+    super(...args);
+    this.state={
+    }
+  }
+  static defaultProps={
+    arrange:{},
+  };
+  handleClick(e){
+    e.preventDefault();
+    e.stopPropagation();
+    if(this.props.arrange.isCenter){
+      this.props.inverse();
+    }else{
+      this.props.center();
+    }
+  }
+  render(){
+    var controllerUnitClass="controller-unit";
+    if(this.props.arrange.isCenter){
+      controllerUnitClass+=" is-center";
+      if(this.props.arrange.isInverse){
+        controllerUnitClass+=" is-inverse";
+      }
+    }
+    return<span className={controllerUnitClass} onClick={this.handleClick.bind(this)}></span>
   }
 }
 class AppComponent extends React.Component {
@@ -215,6 +243,12 @@ class AppComponent extends React.Component {
         data={value}
         arrange={imgArrangeArr[index]}
        inverse={_this.inverse(index)}
+        center={_this.center(index)}
+      />);
+      controllerUnits.push(<Controller
+        key={index}
+        arrange={imgArrangeArr[index]}
+        inverse={_this.inverse(index)}
         center={_this.center(index)}
       />);
     });

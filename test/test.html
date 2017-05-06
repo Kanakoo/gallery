@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #box{
+      width:200px;
+      height:200px;
+      position:relative;
+      perspective:500px;
+    }
+    #box div{
+
+      backface-visibility:hidden;
+      transition: all 2s;
+    }
+    #box .back{
+      -webkit-transform:rotateY(-180deg);
+    }
+    #box:hover .front{
+      -webkit-transform:rotateY(-180deg);
+    }
+    #box:hover .back{
+      -webkit-transform:rotateY(-360deg);
+    }
+    .parent{
+      width:200px;
+      height:200px;
+      background: #000;
+      text-align: center;
+      color:white;
+      display:table-cell;
+      vertical-align: middle;
+
+    }
+    .child{
+      display:inline-block;
+      width:50px;
+      height:50px;
+      background: #555;
+    }
+
+  </style>
+</head>
+<body>
+<div id="box">
+  <div class="front">正面</div>
+  <div class="back">反面</div>
+  <div class="parent">
+<img src=""/>
+    <span class="child">xx</span><!--行内元素居中text-align:center-->
+    <span class="child">xx</span>
+  </div>
+</div>
+</body>
+</html>
